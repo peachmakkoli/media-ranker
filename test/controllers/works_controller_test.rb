@@ -1,39 +1,39 @@
 require "test_helper"
 
 describe WorksController do
-  it "must get index" do
-    get works_index_url
-    must_respond_with :success
+  describe "index" do
+    it "responds with success when there are many works saved" do
+      expect(Work.count).must_equal 3
+
+      get works_path
+      must_respond_with :success
+    end
+
+    it "responds with success when there are no works saved" do
+      expect { 
+        Work.destroy_all
+      }.must_differ "Work.count", -3
+
+      get works_path
+      must_respond_with :success
+    end
   end
 
-  it "must get show" do
-    get works_show_url
-    must_respond_with :success
+  describe "show" do
   end
 
-  it "must get new" do
-    get works_new_url
-    must_respond_with :success
+  describe "new" do
   end
 
-  it "must get create" do
-    get works_create_url
-    must_respond_with :success
+  describe "create" do
   end
 
-  it "must get edit" do
-    get works_edit_url
-    must_respond_with :success
+  describe "edit" do
   end
 
-  it "must get update" do
-    get works_update_url
-    must_respond_with :success
+  describe "update" do
   end
 
-  it "must get destroy" do
-    get works_destroy_url
-    must_respond_with :success
+  describe "destroy" do
   end
-
 end
