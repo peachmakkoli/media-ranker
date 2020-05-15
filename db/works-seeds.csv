@@ -1,25 +1,25 @@
-category,title,creator,publication_year,description
-album,Blue Breaker,Dr. Sarai Langosh,1949,Et et expedita non aut quo.
-book,Joe Treat,Blaise Lesch,1968,Voluptatem adipisci qui velit.
-album,Kreb-Full-o Been,Ms. Trevion Buckridge,2016,Vero consectetur delectus consequatur id aut accusantium unde excepturi.
-album,Wake-up Pie,Timmy Streich I,1919,Voluptatem consequatur qui consectetur nisi officiis culpa.
-album,Major Cup,Jayde Bartoletti,1944,Quis recusandae cum est facere consequatur minima magni et.
-book,Summer Select,Ms. Gwendolyn Ortiz,1946,Et molestiae eos nam odit aut sed.
-album,Holiday Choice,Alexandria Lehner,1940,Excepturi voluptas ut voluptatum.
-book,Postmodern Blend,Meredith Brekke,1970,Dolorem fugit accusantium qui.
-book,Green Forrester,Raquel Hirthe,1933,Omnis qui quia odio.
-album,Winter Mug,Tia Weissnat II,1990,Laboriosam autem iusto quae sed voluptate et.
-book,Red Pie,Davon Kub,1961,Id dolorem qui laborum quia.
-album,Major Equinox,Queen Satterfield,1997,Fugit perferendis est quam sunt porro vel rerum.
-book,Melty Breaker,Montana Dickinson Sr.,1991,Perferendis harum fuga corporis.
-book,Winter Pie,Mr. Syble Kuhn,1970,Incidunt molestias deserunt laudantium.
-album,Goodbye Utopia,Orion Spencer,1962,Praesentium enim pariatur voluptatem sed quod dolorum.
-album,Green Select,Berneice Jenkins,1957,Hic repudiandae molestiae id nulla aliquid maiores necessitatibus.
-book,Blacktop Enlightenment,Seamus D'Amore,1928,Ea id cumque et pariatur magni nemo dolorem.
-album,Express Extract,Dorothy Jast I,1969,Dolores dolorum aut ea aperiam et voluptatem.
-album,Winter Been,Mackenzie Wilkinson,1932,Culpa repudiandae et at sint et amet fugiat et.
-book,Heart Mug,Orpha Douglas,2009,Qui voluptas alias quia.
-album,Blue Treat,Eliseo Gorczany,1979,Sit est quis veniam saepe.
-book,Hello Town,Laury Walter,2005,Est sed ut asperiores sed fugiat.
-album,Blacktop Choice,Casey Feil,2008,Temporibus ex maxime labore quam et natus quia ipsum.
-book,Huggy Star,Nigel Lesch DVM,1962,Voluptatem ea aspernatur nesciunt ipsa quis error corporis placeat.
+id,category,title,creator,publication_year,description
+1,album,"Dirty Computer","Janelle Monáe",2018,"Delivers a Black, Feminist, and Queer Vision of Freedom. In the darkest hour, she speaks truth to power."
+2,book,"Fun Home: A Family Tragicomic","Alison Bechdel",2006,"A graphic memoir that chronicles the author's childhood and youth in rural Pennsylvania, United States, focusing on her complex relationship with her father."
+3,album,"Cut 4 Me","Kelela",2013,"Kelela's debut mixtape is a mutable hybrid of grime, house, electro, R&B, techno, hip hop, and dubstep. This album belongs in the club and in the museum – not a simple feat."
+4,album,"Oil of Every Pearl's Un-Insides","SOPHIE",2018,"SOPHIE makes electronic music for queer cyborgs to glitch out to."
+5,album,"HOPELESSNESS","ANOHNI",2016,"ANOHNI’s debut takes laser aim at climate change, American interventionist foreign policy, violent masculinity, as well as heartbreak, with her incomparable voice."
+6,book,"America Is Not the Heart","Elaine Castillo",2019,"When Hero arrives in Milpitas, California, to live with her aunt and uncle, she’s trying to start over. Disowned by her parents, and bearing the scars of the political upheaval of the Philippines in the 1980s, she finds an unexpected home in the tight-knight immigrant community. There’s a beautiful queer romance at the center of this novel that is breathtaking in its honesty and complexity."
+7,album,"Expectations","Hayley Kiyoko",2018,"Lesbian Jesus really delivered with this one. Pure gay pop goodness."
+8,book,"On Earth We're Briefly Gorgeous","Ocean Vuong",2019,"A queer coming of age, a letter from a Vietnamese son to his mother, a portrait of families struggling amid economic collapse and the opioid epidemic, a tender and heartbreaking first love story, a collection of memories of abuse, trauma, joy, survival."
+9,book,"Real Life","Brandon Taylor",2020,"Wallace is a black gay grad student living in a small Midwestern city. Set over the course of one summer weekend, this book is an intimate look at Wallace’s inner and outer lives: the microaggressions he deals with on a daily basis, the ways trauma lives in the body, the alienation and loneliness of being a black person in a mostly white place. It’s beautiful and painful and full of the kind of raw honesty that feels like a true gift."
+10,album,"Losing Linda","Sui Zhen",2019,"Yacht rock for cyborg aliens, dealing with technology and its impact on identity and sense of self."
+11,book,"I Wish You All The Best","Mason Deaver",2019,"When Ben comes out as nonbinary, their parents kick them out of the house, forcing them to move in with their estranged sister. Starting over at a new school, Ben finds new community, new family, and a new sense of self."
+12,album,"Channel Orange","Frank Ocean",2012,"Frank Ocean's debut studio album, a reference to the neurological phenomenon grapheme–color synesthesia and the color he perceived during the summer he first fell in love."
+13,book,"Gender Queer","Maia Kobabe",2019,"In this memoir of gender discovery, Maia Kobabe shares the joys and challenges of eir journey to self-identity. "
+14,book,"Nimona","Noelle Stevenson",2015,"This subversive all-ages fantasy comic is full of complicated themes about identity, history, and the shape of good and evil."
+15,album,"Aromanticism","Moses Sumney",2017,"Moses Sumney's debut studio album about lovelessness as a sonic dreamscape that seeks to interrogate the idea that romance is normative and necessary."
+16,album,"High Pitched and Moist","Tami T",2019,"A true queer femme anthem, full of queer solidarity and beautiful trans narratives."
+17,book,"On A Sunbeam","Tillie Walden",2018,"This graphic novel, like many other queer comics, began as a webcomic. It’s the story of a young woman searching for the girl she loved at boarding school. She joins up with a ragtag spaceship crew, has adventures, and builds a family."
+18,album,"Arthur Moon","Arthur Moon",2019,"Arthur Moon's self-titled debut album, with exquisite pop sensibility, weird singer-songwriter creativity and disdain for traditional song structures, and crunchy, rocking hooks and melodies."
+19,album,"DRKLNG","Zebra Katz",2013,"Dark, slow, mesmerizing production and uncommon flow are Zebra Katz's trademark. He often raps laconically, but purposefully, and repeats refrains until they lose — or gain — meaning."
+20,book,"Juliet Takes a Breath","Gabby Rivera",2019,"Juliet is a 19-year-old Puerto Rican lesbian from the Bronx. She decides to take a summer internship in Portland with a famous white feminist writer, determined to figure out how to be gay, because she’s not really sure. But instead of answers, she finds a lot more questions. This funny, warm story is an ode to being open and curious, and to all the different ways that young people discover their queerness (and themselves)."
+21,album,"Soft Sounds From Another Planet","Japanese Breakfast",2017,"Japanese Breakfast makes pretty lovely, but pretty sad, indie rock, but the album title here is incredibly purposeful — just around the edges, and in the background, infused throughout, is an ethereal, otherworldly quality."
+22,book,"Stone Butch Blues","Leslie Feinberg",2004,"This novel tells the story of Jess Goldberg, who comes out as a butch lesbian in the pre-Stonewall era and sets out on a journey of gender discovery. It celebrates the beauty and complexity of trans lives without glossing over the trauma created by a transphobic society."
+23,album,"Sweet High Rise","Loamlands",2016,"Americana for the queer homesteader."
+24,book,"Nevada","Imogen Binnie",2013,"When her girlfriend dumps her, Maria, a trans woman living in New York City, impulsively decides to drive cross-country. In an unforgettable, bitterly funny, and no-nonsense voice, she tells the story of this transformative road trip."
