@@ -20,6 +20,17 @@ describe WorksController do
   end
 
   describe "show" do
+    it "responds with success when showing an existing valid work" do
+      work = works(:album)
+      
+      get work_path(work.id)
+      must_respond_with :success
+    end
+
+    it "responds with 404 with an invalid work id" do
+      get work_path(-1)
+      must_respond_with :not_found
+    end
   end
 
   describe "new" do
