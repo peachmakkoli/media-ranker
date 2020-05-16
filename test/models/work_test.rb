@@ -32,7 +32,36 @@ describe Work do
   end
 
   describe "validations" do
-  
+    let (:new_album) {
+      Work.new(
+        category: "album",
+        title: "new album title"
+      )
+    }
+
+    it "must have a category" do
+      new_album.category = nil
+
+      expect(new_album.valid?).must_equal false
+      expect(new_album.errors.messages).must_include :category
+      expect(new_album.errors.messages[:category]).must_equal ["can't be blank"]
+    end
+
+    it "must have a title" do
+      new_album.title = nil
+
+      expect(new_album.valid?).must_equal false
+      expect(new_album.errors.messages).must_include :title
+      expect(new_album.errors.messages[:title]).must_equal ["can't be blank"]
+    end
+
+    it "will only allow titles that are unique (case insensitive) within its category" do
+      new_album.title = @album.title.upcase
+
+      expect(new_album.valid?).must_equal false
+      expect(new_album.errors.messages).must_include :title
+      expect(new_album.errors.messages[:title]).must_equal ["has already been taken"]
+    end
   end
 
   describe "sort works" do
