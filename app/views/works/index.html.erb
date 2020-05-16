@@ -1,2 +1,91 @@
-<h1>Works#index</h1>
-<p>Find me in app/views/works/index.html.erb</p>
+<h2>List of Works</h2>
+
+<section class="media-table">
+  <h4>Albums</h4>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th width="80">Votes</th>
+        <th>Title</th>
+        <th>Created By</th>
+        <th width="100">Published</th>
+        <th width="100">Upvote</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% if @albums %>
+        <% @albums.each do |album| %>
+          <tr>
+            <td>VOTE_NUM</td>
+            <td><%= link_to album.title, work_path(album) %></td>
+            <td><%= album.creator %></td>
+            <td><%= album.publication_year %></td>
+            <td>UPVOTE_BUTTON</td>
+          </tr>
+        <% end %>
+      <% end %>
+    </tbody>
+  </table>
+</section>
+
+<section class="media-table">
+  <h4>Books</h4>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th width="80">Votes</th>
+        <th>Title</th>
+        <th>Created By</th>
+        <th width="100">Published</th>
+        <th width="100">Upvote</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% if @books %>
+        <% @books.each do |book| %>
+          <tr>
+            <td>VOTE_NUM</td>
+            <td><%= link_to book.title, work_path(book) %></td>
+            <td><%= book.creator %></td>
+            <td><%= book.publication_year %></td>
+            <td>UPVOTE_BUTTON</td>
+          </tr>
+        <% end %>
+      <% end %>
+    </tbody>
+  </table>
+</section>
+
+<section class="media-table">
+  <h4>Movies</h4>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th width="80">Votes</th>
+        <th>Title</th>
+        <th>Created By</th>
+        <th width="100">Published</th>
+        <th width="100">Upvote</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% if @movies %>
+        <% @movies.each do |movie| %>
+          <tr>
+            <td>VOTE_NUM</td>
+            <td><%= link_to movie.title, work_path(movie) %></td>
+            <td><%= movie.creator %></td>
+            <td><%= movie.publication_year %></td>
+            <td>UPVOTE_BUTTON</td>
+          </tr>
+        <% end %>
+      <% end %>
+    </tbody>
+  </table>
+</section>
+
+<%= button_to "View top media", root_path, class: "btn btn-secondary" %> 
+<%= button_to "Add a new work", new_work_path, class: "btn btn-primary" %>
