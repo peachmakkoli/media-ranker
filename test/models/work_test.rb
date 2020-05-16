@@ -57,12 +57,19 @@ describe Work do
       expect(new_album.errors.messages[:title]).must_equal ["can't be blank"]
     end
 
-    it "will only allow titles that are unique (case insensitive) within its category" do
+    it "will only allow titles that are unique (case insensitive)" do
       new_album.title = @album.title.upcase
 
       expect(new_album.valid?).must_equal false
       expect(new_album.errors.messages).must_include :title
       expect(new_album.errors.messages[:title]).must_equal ["has already been taken"]
+    end
+
+    it "will allow a title already in the database under a different category" do
+      new_work = Work.new(category: "movie", title: @album.title)
+      
+      expect(new_album.valid?).must_equal true
+      expect(new_album.errors.messages).must_be_empty
     end
   end
 
