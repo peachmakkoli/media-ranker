@@ -1,8 +1,8 @@
 class WorksController < ApplicationController
   def index
-    @albums = sort_works("album")
-    @books = sort_works("book")
-    @movies = sort_works("movie")
+    @albums = Work.sort_works("album")
+    @books = Work.sort_works("book")
+    @movies = Work.sort_works("movie")
   end
 
   def show
@@ -68,11 +68,6 @@ class WorksController < ApplicationController
     flash[:success] = "Successfully deleted #{@work.category} #{@work.id}: \"#{@work.title}\""
     redirect_to root_path
     return
-  end
-
-  # helper method for sorting works by number of votes; I chose this design instead of creating a "votes" column in the works table, because there was a possibility that values in the votes column would not match up the actual number of votes belonging to the work
-  def sort_works(category)
-    return Work.where(category: category).sort_by { |work| work.votes.count }.reverse!
   end
 
   private
