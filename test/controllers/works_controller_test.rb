@@ -86,9 +86,77 @@ describe WorksController do
   end
 
   describe "edit" do
+    it "responds with success when getting the edit page for an existing, valid work" do
+      work = works(:album)
+
+      get edit_work_path(work.id)
+      must_respond_with :success
+    end
+
+    it "responds with a 400 error when getting the edit page for a non-existing work" do
+      get edit_work_path(-1)
+      must_respond_with :not_found
+    end
   end
 
   describe "update" do
+    let (:edited_work_hash) {
+      {
+        work: {
+          category: "movie",
+          title: "edited movie title",
+          creator: "edited movie artist",
+          publication_year: "edited movie year",
+          description: "edited movie description"          
+        },
+      }
+    }
+
+    it "can update an existing work with valid information accurately, create a flash message, and redirect" do
+      work = works(:movie)
+
+      expect {
+        patch work_path(work.id), params: edited_work_hash
+      }.wont_differ "Work.count"
+
+      work.reload
+      expect(work.title).must_equal edited_work_hash[:work][:title]
+      expect(work.creator).must_equal edited_work_hash[:work][:creator]
+      expect(work.publication_year).must_equal edited_work_hash[:work][:publication_year]
+      expect(work.description).must_equal edited_work_hash[:work][:description]
+
+      expect(flash[:success]).must_include "Successfully updated #{work.category} #{work.id}"
+
+      must_redirect_to work_path(id)
+    end
+
+    it "does not update any work if given an invalid id, and responds with a 404" do
+      id = -1
+
+      expect {
+        patch work_path(id), params: edited_work_hash
+      }.wont_differ "Work.count"
+
+      must_respond_with :not_found
+    end
+
+    it "does not create a work if the form data violates work validations, creates a flash message, and responds with a 400 error" do
+      work = works(:movie)
+
+      invalid_work_hash = {
+        work: {
+          category: "movie"
+        },
+      }
+
+      expect {
+        patch work_path(work.id), params: invalid_work_hash
+      }.wont_differ "Work.count"
+
+      expect(flash[:error]).must_include "A problem occurred: Could not update #{work.category} #{work.id}"
+
+      must_respond_with :bad_request
+    end
   end
 
   describe "destroy" do
