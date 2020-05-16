@@ -1,2 +1,54 @@
-<h1>Homepages#index</h1>
-<p>Find me in app/views/homepages/index.html.erb</p>
+<section class="media-spotlight">
+<h2>
+  Media Spotlight:
+  <%= link_to @spotlight.title, work_path(@spotlight) %> by <%= @spotlight.creator %>
+</h2>
+<p><%= pluralize(@spotlight.votes.count, "vote") %> - <%= @spotlight.description %></p>
+</section>
+
+<section class="media-top-ten-container">
+  <section class="media-top-ten">
+    <h2>Top Movies</h2>
+      <% @movies.each do |movie| %>
+        <ul class="list-group">
+          <li class="list-group-item">
+            <h4>
+              <%= link_to movie.title, work_path(movie) %>
+              <small>by <%= movie.creator %></small>
+              <p><%= pluralize(movie.votes.count, "vote") %></p>
+            </h4>
+          </li>
+        </ul>
+      <% end %>
+  </section>
+
+  <section class="media-top-ten">
+    <h2>Top Books</h2>
+      <% @books.each do |book| %>
+        <ul class="list-group">
+          <li class="list-group-item">
+            <h4>
+              <%= link_to book.title, work_path(book) %>
+              <small>by <%= book.creator %></small>
+              <p><%= pluralize(book.votes.count, "vote") %></p>
+            </h4>
+          </li>
+        </ul>
+      <% end %>
+  </section>
+
+  <section class="media-top-ten">
+    <h2>Top Albums</h2>
+      <% @albums.each do |album| %>
+        <ul class="list-group">
+          <li class="list-group-item">
+            <h4>
+              <%= link_to album.title, work_path(album) %>
+              <small>by <%= album.creator %></small>
+              <p><%= pluralize(album.votes.count, "vote") %></p>
+            </h4>
+          </li>
+        </ul>
+      <% end %>
+  </section>
+</section>
