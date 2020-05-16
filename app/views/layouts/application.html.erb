@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>MediaRanker</title>
+    <title>LGBTQ Media Ranker</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -10,6 +10,47 @@
   </head>
 
   <body>
-    <%= yield %>
+    <header class="site-header">
+      <h1>
+      <%= link_to "LGBTQ Media Ranker", root_path %>
+      <small>Ranking the Best of Everything</small>
+      </h1>
+
+      <nav class="d-flex justify-content-between site-nav">
+        <ul class="nav media-nav">
+          <li class="nav-item">
+            <%= link_to "View top media", root_path, class: "nav-link" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "View all media", works_path, class: "nav-link" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "Add a work", new_work_path, class: "nav-link" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "View all users", users_path, class: "nav-link" %>
+          </li>
+        </ul>
+
+        <ul class="nav user-nav">
+        <% if session[:user_id] %>
+          <li class="nav-item">
+            <%= button_to "Logged in as #{@user.username}", user_path(@user), method: :get %>
+          </li>
+          <li class="nav-item">
+            <%= button_to "Logout", logout_path %>
+          </li>
+        <% else %>
+          <li class="nav-item">
+            <%= button_to "Login", login_path, method: :get %>
+          </li>
+        <% end %>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <%= yield %>
+    </main>
   </body>
 </html>
