@@ -1,7 +1,9 @@
 class WorksController < ApplicationController
   def index
     # lists all works by order of votes, can be id for now
-    @works = Work.order("id")
+    @albums = Work.where(category: "album").order("id")
+    @books = Work.where(category: "book").order("id")
+    @movies = Work.where(category: "movie").order("id")
   end
 
   def show
