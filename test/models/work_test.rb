@@ -3,6 +3,8 @@ require "test_helper"
 describe Work do
   before do
     @album = works(:album)
+    @album2 = works(:album2)
+    @album3 = works(:album3)
     @user1 = users(:user1)
     @user2 = users(:user2)
     @user3 = users(:user3)
@@ -65,7 +67,39 @@ describe Work do
   end
 
   describe "sort works" do
-    
+    before do
+      @category = "album"
+      # 1 vote for the first album
+      vote_1 = Vote.create!(work_id: @album.id, user_id: @user1.id)
+      # 3 votes for the second album
+      vote_2 = Vote.create!(work_id: @album2.id, user_id: @user1.id)
+      vote_3 = Vote.create!(work_id: @album2.id, user_id: @user2.id)
+      vote_4 = Vote.create!(work_id: @album2.id, user_id: @user3.id)
+      # 2 votes for the third album
+      vote_5 = Vote.create!(work_id: @album3.id, user_id: @user1.id)
+      vote_6 = Vote.create!(work_id: @album3.id, user_id: @user2.id)
+    end
+
+    it "sorts by vote count if there are many works in the database" do      
+      expect(Work.sort_works(@category).first).must_equal @album2
+      expect(Work.sort_works(@category).second).must_equal @album3
+      expect(Work.sort_works(@category).third).must_equal @album
+    end
+
+    it "returns an empty array if there are no works in the database" do
+      Vote.destroy_all
+      Work.destroy_all
+
+      expect(Work.sort_works(@category)).must_be_empty
+    end
+
+    it "throws an exception if the category is invalid" do
+      category = "invalid"
+
+      expect {
+        Work.sort_works(category)
+      }.must_raise ArgumentError
+    end
   end
 
   describe "top ten" do
