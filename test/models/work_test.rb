@@ -103,6 +103,54 @@ describe Work do
   end
 
   describe "top ten" do
-    
+    before do
+      @category = "album"
+      # 1 vote for the first album
+      vote_1 = Vote.create!(work_id: @album.id, user_id: @user1.id)
+      # 3 votes for the second album
+      vote_2 = Vote.create!(work_id: @album2.id, user_id: @user1.id)
+      vote_3 = Vote.create!(work_id: @album2.id, user_id: @user2.id)
+      vote_4 = Vote.create!(work_id: @album2.id, user_id: @user3.id)
+      # 2 votes for the third album
+      vote_5 = Vote.create!(work_id: @album3.id, user_id: @user1.id)
+      vote_6 = Vote.create!(work_id: @album3.id, user_id: @user2.id)
+    end
+
+    it "sorts by vote count if there are many works in the database" do      
+      expect(Work.top_ten(@category).first).must_equal @album2
+      expect(Work.top_ten(@category).second).must_equal @album3
+      expect(Work.top_ten(@category).third).must_equal @album
+    end
+
+    it "only returns the top 10 works in the category" do      
+      expect(Work.top_ten(@category).count).must_equal 10
+    end
+
+    it "returns all works if there are less than 10 works in the database" do
+      Vote.destroy_all
+      Work.destroy_all
+      Work.create!(category: "album", title: "the only work in the database")
+
+      expect(Work.top_ten(@category).count).must_equal 1
+    end
+
+    it "returns an empty array if there are no works in the database" do
+      Vote.destroy_all
+      Work.destroy_all
+
+      expect(Work.top_ten(@category)).must_be_empty
+    end
+
+    it "throws an exception if the category is invalid" do
+      category = "invalid"
+
+      expect {
+        Work.top_ten(category)
+      }.must_raise ArgumentError
+    end
+  end
+
+  describe "spotlight" do
+
   end
 end
