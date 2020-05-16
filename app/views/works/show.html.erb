@@ -1,2 +1,40 @@
-<h1>Works#show</h1>
-<p>Find me in app/views/works/show.html.erb</p>
+<section>
+  <h2><%= @work.title %></h2>
+  <p>Created by: <%= @work.creator %></p>
+  <p>Published: <%= @work.publication_year %></p>
+  <p><%= @work.description %></p>
+
+  <section>
+    <%= button_to "Back to media ranks", root_path, class: "btn btn-primary" %>
+
+    <%= button_to "Edit", edit_work_path(@work), class: "btn btn-primary" %>
+
+    <%= button_to "Upvote", work_upvote_path(@work), class: "btn btn-primary" %>
+
+    <%= button_to "Delete", edit_work_path(@work), method: :delete, class: "btn btn-danger", data: { confirm: "Are you sure you want to delete this #{@work.category}: \"#{@work.title}\"?" } %>
+  </section>
+
+  <section class="media-votes">
+    <h3><%= "#{@work.votes.count} Votes for this #{@work.category.capitalize}"%></h3>
+
+    <table class="table">
+      <thead>
+        <tr>
+          <th width="100">User</th>
+          <th width="100">Date</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% if @work.votes %>
+          <% @work.votes.each do |vote| %>
+            <tr>
+              <td><%= link_to vote.user.username, user_path(vote.user) %></td>
+              <td><%= vote.created_at.strftime("%B %e, %Y") %></td>
+            </tr>
+          <% end %>
+        <% end %>
+      </tbody>
+    </table>
+  </section>
+</section>
+
