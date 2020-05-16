@@ -22,37 +22,51 @@ class WorksController < ApplicationController
       redirect_to work_path(@work) 
       return
     else
-      flash.now[:error] = "A problem occurred: Could not create #{@work.category}."
+      flash.now[:error] = "A problem occurred: Could not create #{@work.category}"
       render :new, status: :bad_request
       return
     end
   end
 
   def edit
-    # find work by id
-    # if nil, set head to :not_found
+    @work = Work.find_by(id: params[:id])
+    head :not_found if !@work
+    return
   end
 
   def update
-    # find work by id
-    # if nil, set head to :not_found, return
-    # else if update is successful
-    # flash success message: "Successfully updated work.category work.id work.title"
-    # else if save is unsuccessful
-    # flash error message: "A problem occurred: Could not create work.category"
-    # flash errors
-    # render :edit, status :bad_request, return
+    @work = Work.find_by(id: params[:id])
+
+    if !@work
+      head :not_found
+      return
+    elsif @work.update(work_params)
+      flash[:success] = "Successfully updated #{@work.category} #{@work.id}: \"#{@work.title}\""
+      redirect_to work_path(@work)
+      return
+    else
+      flash.now[:error] = "A problem occurred: Could not update #{@work.category}"
+      render :edit, status: :bad_request
+      return
+    end
   end
 
   def destroy
-    # find work by id
-    # if nil, set head to :not_found, return
-    # elsif the work has votes
-    # destroy all votes first
-    # then destroy work
-    # else we can just destroy the work
-    # flash success message: "Successfully deleted work.category work.id work.title"
-    # redirect to root, return
+    @work = Work.find_by(id: params[:id])
+
+    if !@work
+      head :not_found
+      return
+    elsif Vote.where(work_id: @work.id)
+      Vote.where(work_id: @work.id).destroy_all
+      @work.destroy
+    else
+      @work.destroy
+    end
+
+    flash[:success] = "Successfully deleted #{@work.category} #{@work.id}: \"#{@work.title}\""
+    redirect_to root_path
+    return
   end
 
   private
