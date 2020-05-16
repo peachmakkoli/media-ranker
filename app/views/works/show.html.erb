@@ -5,9 +5,9 @@
   <p><%= @work.description %></p>
 
   <section>
-    <%= button_to "Back to media ranks", root_path, class: "btn btn-primary" %>
+    <%= button_to "Back to media ranks", root_path, method: :get, class: "btn btn-primary" %>
 
-    <%= button_to "Edit", edit_work_path(@work), class: "btn btn-primary" %>
+    <%= button_to "Edit", edit_work_path(@work), method: :get, class: "btn btn-primary" %>
 
     <%= button_to "Upvote", work_upvote_path(@work), class: "btn btn-primary" %>
 
@@ -37,4 +37,3 @@
     </table>
   </section>
 </section>
-
