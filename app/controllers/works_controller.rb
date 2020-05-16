@@ -59,8 +59,8 @@ class WorksController < ApplicationController
     if !@work
       head :not_found
       return
-    elsif Vote.where(work_id: @work.id)
-      Vote.where(work_id: @work.id).destroy_all
+    elsif @work.votes
+      @work.votes.destroy_all
       @work.destroy
     else
       @work.destroy
