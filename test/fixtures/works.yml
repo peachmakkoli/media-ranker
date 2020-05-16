@@ -4,3 +4,15 @@ album:
   creator: first album artist
   publication_year: first album year
   description: first album description
+album2:
+  category: album
+  title: second album title
+  creator: second album artist
+  publication_year: second album year
+  description: second album description
+album3:
+  category: album
+  title: third album title
+  creator: third album artist
+  publication_year: third album year
+  description: third album description
