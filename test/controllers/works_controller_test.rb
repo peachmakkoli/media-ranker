@@ -160,5 +160,37 @@ describe WorksController do
   end
 
   describe "destroy" do
+    it "destroys the work instance in db when work exists and has no votes, creates a flash message, then redirects" do
+      work = works(:book)
+      
+      expect{
+        delete work_path(work.id)
+      }.must_differ "Work.count", -1
+
+      expect(flash[:success]).must_include "Successfully deleted #{work.category} #{work.id}"
+
+      must_redirect_to root_path
+    end
+
+    it "destroys the work instance in db when work exists and has at least one vote, creates a flash message, then redirects" do
+      work = works(:book)
+
+      new_user = User.create!(username: "test")
+      vote_1 = Vote.create!(work_id: work.id, user_id: new_user.id)
+  
+      expect {
+        delete work_path(work.id)
+      }.must_differ "Work.count", -1
+
+      must_redirect_to root_path
+    end
+
+    it "does not change the db when the work does not exist, then responds with a 404 error" do
+      expect{
+        delete work_path(-1)
+      }.wont_differ "Work.count"
+
+      must_respond_with :not_found
+    end
   end
 end
