@@ -7,6 +7,7 @@ class HomepagesController < ApplicationController
     @spotlight = Work.all.max_by { |work| work.votes.count }
   end
 
+  # helper method for displaying top ten media by number of votes
   def top_ten(category)
     return Work.where(category: category).limit(10).sort_by { |work| work.votes.count }.reverse!
   end
