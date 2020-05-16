@@ -1,10 +1,12 @@
-<section class="media-spotlight">
-<h2>
-  Media Spotlight:
-  <%= link_to @spotlight.title, work_path(@spotlight) %> by <%= @spotlight.creator %>
-</h2>
-<p><%= pluralize(@spotlight.votes.count, "vote") %> - <%= @spotlight.description %></p>
-</section>
+<% if @spotlight %>
+  <section class="media-spotlight">
+  <h2>
+    Media Spotlight:
+    <%= link_to @spotlight.title, work_path(@spotlight) %> by <%= @spotlight.creator %>
+  </h2>
+  <p><%= pluralize(@spotlight.votes.count, "vote") %> - <%= @spotlight.description %></p>
+  </section>
+<% end %>
 
 <section class="media-top-ten-container">
   <section class="media-top-ten">

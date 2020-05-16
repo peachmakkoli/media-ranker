@@ -4,6 +4,6 @@ class HomepagesController < ApplicationController
     @books = Work.top_ten("book")
     @movies = Work.top_ten("movie")
 
-    @spotlight = Work.all.max_by { |work| work.votes.count }
+    @spotlight = Work.spotlight
   end
 end

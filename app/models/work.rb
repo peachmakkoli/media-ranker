@@ -18,6 +18,10 @@ class Work < ApplicationRecord
   end
 
   def self.spotlight
-    # TODO: move code block from homepages_controller into model
+    if Vote.all.empty? || Work.all.empty?
+      return nil
+    else
+      return Work.all.max_by { |work| work.votes.count }
+    end
   end
 end
