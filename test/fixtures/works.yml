@@ -1,18 +1,6 @@
 album:
   category: album
-  title: test album title
-  creator: test album artist
-  publication_year: test album year
-  description: test album description
-book:
-  category: book
-  title: test book title
-  creator: test book artist
-  publication_year: test book year
-  description: test book description
-movie:
-  category: movie
-  title: test movie title
-  creator: test movie artist
-  publication_year: test movie year
-  description: test movie description
+  title: first album title
+  creator: first album artist
+  publication_year: first album year
+  description: first album description

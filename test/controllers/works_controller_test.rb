@@ -3,7 +3,7 @@ require "test_helper"
 describe WorksController do
   describe "index" do
     it "responds with success when there are many works saved" do
-      expect(Work.count).must_equal 3
+      expect(Work.count).must_equal 1
 
       get works_path
       must_respond_with :success
@@ -12,7 +12,7 @@ describe WorksController do
     it "responds with success when there are no works saved" do
       expect { 
         Work.destroy_all
-      }.must_differ "Work.count", -3
+      }.must_differ "Work.count", -1
 
       get works_path
       must_respond_with :success
@@ -44,11 +44,11 @@ describe WorksController do
     it "can create a new work with valid information accurately, create flash message, and redirect" do
       work_hash = {
         work: {
-          category: "movie",
-          title: "new movie title",
-          creator: "new movie artist",
-          publication_year: "new movie year",
-          description: "new movie description"
+          category: "album",
+          title: "new album title",
+          creator: "new album artist",
+          publication_year: "new album year",
+          description: "new album description"
         },
       }
 
@@ -71,7 +71,7 @@ describe WorksController do
     it "does not create a work if the form data violates work validations, creates a flash message, and responds with a 400 error" do
       invalid_work_hash = {
         work: {
-          category: "movie",
+          category: "album",
           title: nil
         },
       }
@@ -104,17 +104,17 @@ describe WorksController do
     let (:edited_work_hash) {
       {
         work: {
-          category: "movie",
-          title: "edited movie title",
-          creator: "edited movie artist",
-          publication_year: "edited movie year",
-          description: "edited movie description"          
+          category: "album",
+          title: "edited album title",
+          creator: "edited album artist",
+          publication_year: "edited album year",
+          description: "edited album description"          
         },
       }
     }
 
     it "can update an existing work with valid information accurately, create a flash message, and redirect" do
-      work = works(:movie)
+      work = works(:album)
 
       expect {
         patch work_path(work.id), params: edited_work_hash
@@ -142,11 +142,11 @@ describe WorksController do
     end
 
     it "does not update a work if the form data violates work validations, creates a flash message, and responds with a 400 error" do
-      work = works(:movie)
+      work = works(:album)
 
       invalid_work_hash = {
         work: {
-          category: "movie",
+          category: "album",
           title: nil
         },
       }
@@ -163,7 +163,7 @@ describe WorksController do
 
   describe "destroy" do
     it "destroys the work instance in db when work exists and has no votes, creates a flash message, then redirects" do
-      work = works(:book)
+      work = works(:album)
       
       expect{
         delete work_path(work.id)
@@ -175,7 +175,7 @@ describe WorksController do
     end
 
     it "destroys the work instance in db when work exists and has at least one vote, creates a flash message, then redirects" do
-      work = works(:book)
+      work = works(:album)
 
       new_user = User.create!(username: "test")
       vote_1 = Vote.create!(work_id: work.id, user_id: new_user.id)
