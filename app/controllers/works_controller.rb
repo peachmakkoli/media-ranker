@@ -1,9 +1,8 @@
 class WorksController < ApplicationController
   def index
-    # lists all works by order of votes, can be id for now
-    @albums = Work.where(category: "album").order("id")
-    @books = Work.where(category: "book").order("id")
-    @movies = Work.where(category: "movie").order("id")
+    @albums = sort_works("album")
+    @books = sort_works("book")
+    @movies = sort_works("movie")
   end
 
   def show
@@ -69,6 +68,13 @@ class WorksController < ApplicationController
     flash[:success] = "Successfully deleted #{@work.category} #{@work.id}: \"#{@work.title}\""
     redirect_to root_path
     return
+  end
+
+  # helper method for sorting works by number of votes, without creating a new "votes" column; #sort code block by Ganesh Kunwar: https://stackoverflow.com/a/31002875 
+  def sort_works(category)
+    return Work.where(category: category).sort do |a, b| 
+      b.votes.count <=> a.votes.count 
+    end
   end
 
   private
