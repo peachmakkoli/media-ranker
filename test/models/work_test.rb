@@ -151,6 +151,34 @@ describe Work do
   end
 
   describe "spotlight" do
+    before do
+      @category = "album"
+      # 1 vote for the first album
+      vote_1 = Vote.create!(work_id: @album.id, user_id: @user1.id)
+      # 3 votes for the second album
+      vote_2 = Vote.create!(work_id: @album2.id, user_id: @user1.id)
+      vote_3 = Vote.create!(work_id: @album2.id, user_id: @user2.id)
+      vote_4 = Vote.create!(work_id: @album2.id, user_id: @user3.id)
+      # 2 votes for the third album
+      vote_5 = Vote.create!(work_id: @album3.id, user_id: @user1.id)
+      vote_6 = Vote.create!(work_id: @album3.id, user_id: @user2.id)
+    end
 
+    it "finds the work that has the highest number of votes" do
+      expect(Work.spotlight).must_equal @album2
+    end
+
+    it "returns nil if there are no votes but many works in the database" do
+      Vote.destroy_all
+
+      expect(Work.spotlight).must_be_nil
+    end
+
+    it "returns nil if there are no works in the database" do
+      Vote.destroy_all
+      Work.destroy_all
+
+      expect(Work.spotlight).must_be_nil
+    end
   end
 end
