@@ -3,7 +3,7 @@ require "test_helper"
 describe WorksController do
   describe "index" do
     it "responds with success when there are many works saved" do
-      expect(Work.count).must_equal 1
+      expect(Work.count).must_equal 11
 
       get works_path
       must_respond_with :success
@@ -12,7 +12,7 @@ describe WorksController do
     it "responds with success when there are no works saved" do
       expect { 
         Work.destroy_all
-      }.must_differ "Work.count", -1
+      }.must_differ "Work.count", -11
 
       get works_path
       must_respond_with :success
