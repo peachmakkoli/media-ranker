@@ -1,26 +1,31 @@
 class WorksController < ApplicationController
   def index
     # lists all works by order of votes, can be id for now
+    @works = Work.order("id")
   end
 
   def show
-    # find work by id
-    # if nil, set head to :not_found, return
+    @work = Work.find_by(id: params[:id])
+    head :not_found if !@work
+    return
   end
 
   def new
-    # work.new
+    @work = Work.new
   end
 
   def create
-    # work.new pass in work_params
-    # if save is successful
-    # flash success message: "Successfully created work.category work.id work.title"
-    # redirect to work_path, return
-    # else if save is unsuccessful
-    # flash error message: "A problem occurred: Could not create work.category"
-    # flash errors
-    # render :new, status :bad_request, return
+    @work = Work.new(work_params)
+
+    if @work.save
+      flash[:success] = "Successfully created #{@work.category} #{@work.id}: \"#{@work.title}\""
+      redirect_to work_path(@work) 
+      return
+    else
+      flash.now[:error] = "A problem occurred: Could not create #{@work.category}."
+      render :new, status: :bad_request
+      return
+    end
   end
 
   def edit
@@ -53,6 +58,6 @@ class WorksController < ApplicationController
   private
 
   def work_params
-    # permit category, title, creator, publication_year, description
+    return params.require(:work).permit(:category, :title, :creator, :publication_year, :description)
   end
 end
