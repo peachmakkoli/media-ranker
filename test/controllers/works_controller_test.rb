@@ -56,14 +56,14 @@ describe WorksController do
         post works_path, params: work_hash
       }.must_differ "Work.count", 1
       
-      new_work = work.find_by(name: work_hash[:work][:title])
+      new_work = Work.find_by(title: work_hash[:work][:title])
       expect(new_work.category).must_equal work_hash[:work][:category]
       expect(new_work.title).must_equal work_hash[:work][:title]
       expect(new_work.creator).must_equal work_hash[:work][:creator]
       expect(new_work.publication_year).must_equal work_hash[:work][:publication_year]
       expect(new_work.description).must_equal work_hash[:work][:description]
 
-      expect(flash[:success]).must_include "Successfully created #{work.category} #{work.id}"
+      expect(flash[:success]).must_include "Successfully created #{new_work.category} #{new_work.id}"
       
       must_redirect_to work_path(new_work.id)
     end
