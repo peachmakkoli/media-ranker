@@ -3,11 +3,17 @@ class Work < ApplicationRecord
   validates :category, :title, presence: true
   validates :title, uniqueness: { scope: :category, case_sensitive: false }
 
-  def sort_works
-    # move this from works_controller into model
+  def self.sort_works(category)
+    # raise ArgumentError if category is invalid
+    # TODO: move code block from works_controller into model
   end
 
-  def top_ten
-    # move this from homepages_controller into model
+  def self.top_ten(category)
+    # raise ArgumentError if category is invalid
+    # TODO: move code block from homepages_controller into model
+  end
+
+  def self.spotlight
+    # TODO: move code block from homepages_controller into model
   end
 end
