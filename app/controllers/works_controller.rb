@@ -70,11 +70,9 @@ class WorksController < ApplicationController
     return
   end
 
-  # helper method for sorting works by number of votes, without creating a new "votes" column; #sort code block by Ganesh Kunwar: https://stackoverflow.com/a/31002875 
+  # helper method for sorting works by number of votes; I chose this design instead of creating a "votes" column in the works table, because there was a possibility that values in the votes column would not match up the actual number of votes belonging to the work
   def sort_works(category)
-    return Work.where(category: category).sort do |a, b| 
-      b.votes.count <=> a.votes.count 
-    end
+    return Work.where(category: category).sort_by { |work| work.votes.count }.reverse!
   end
 
   private
