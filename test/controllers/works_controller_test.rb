@@ -71,7 +71,8 @@ describe WorksController do
     it "does not create a work if the form data violates work validations, creates a flash message, and responds with a 400 error" do
       invalid_work_hash = {
         work: {
-          category: "movie"
+          category: "movie",
+          title: nil
         },
       }
 
@@ -127,7 +128,7 @@ describe WorksController do
 
       expect(flash[:success]).must_include "Successfully updated #{work.category} #{work.id}"
 
-      must_redirect_to work_path(id)
+      must_redirect_to work_path(work.id)
     end
 
     it "does not update any work if given an invalid id, and responds with a 404" do
@@ -140,20 +141,21 @@ describe WorksController do
       must_respond_with :not_found
     end
 
-    it "does not create a work if the form data violates work validations, creates a flash message, and responds with a 400 error" do
+    it "does not update a work if the form data violates work validations, creates a flash message, and responds with a 400 error" do
       work = works(:movie)
 
       invalid_work_hash = {
         work: {
-          category: "movie"
+          category: "movie",
+          title: nil
         },
       }
 
       expect {
         patch work_path(work.id), params: invalid_work_hash
       }.wont_differ "Work.count"
-
-      expect(flash[:error]).must_include "A problem occurred: Could not update #{work.category} #{work.id}"
+      
+      expect(flash[:error]).must_include "A problem occurred: Could not update #{work.category}"
 
       must_respond_with :bad_request
     end
