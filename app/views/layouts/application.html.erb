@@ -53,7 +53,7 @@
       <% flash.each do |name, message| %>
         <div class="alert <%= flash[:success] ? "alert-success" : "alert-warning" %>">
           <span><%= message %></span>
-          <% if @work.errors.any? %>
+          <% if @work %>
           <ul>
             <% @work.errors.each do |column, message| %>
               <li><%= column.capitalize %></strong> <%= message %></li>
