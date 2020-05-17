@@ -60,11 +60,9 @@ class WorksController < ApplicationController
       return
     elsif @work.votes
       @work.votes.destroy_all
-      @work.destroy
-    else
-      @work.destroy
     end
 
+    @work.destroy
     flash[:success] = "Successfully deleted #{@work.category} #{@work.id}: \"#{@work.title}\""
     redirect_to root_path
     return
