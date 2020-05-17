@@ -1,16 +1,6 @@
 class VotesController < ApplicationController
   def create
-    @work = Work.find_by(id: params[:work_id])
-    @current_user = User.find_by(id: session[:user_id])
-
-    if !@work
-      head :not_found
-      return
-    elsif !@current_user
-      flash[:error] = "A problem occurred: You must log in to do that"
-      redirect_to request.referrer
-      return
-    end
+    return if !validate_work || !validate_user
 
     @vote = Vote.new(
       work_id: @work.id, 
@@ -25,6 +15,31 @@ class VotesController < ApplicationController
       flash[:error] = "A problem occurred: Could not upvote"
       redirect_to request.referrer
       return
+    end
+  end
+
+  # helper method for checking if the work exists
+  def validate_work
+    @work = Work.find_by(id: params[:work_id])
+
+    if !@work
+      head :not_found
+      return
+    else
+      return true
+    end
+  end
+
+  # helper method for checking if the user is logged in
+  def validate_user
+    @current_user = User.find_by(id: session[:user_id])
+
+    if !@current_user
+      flash[:error] = "A problem occurred: You must log in to do that"
+      redirect_to request.referrer
+      return
+    else
+      return true
     end
   end
 
