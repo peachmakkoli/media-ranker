@@ -1,5 +1,4 @@
 <%= form_with model: @work do |f| %>
-
   <div class="form-group">
     <%= f.label :category %>
     <%= f.select(:category, ["album", "book", "movie"], {}, { class: "form-control" }) %>
