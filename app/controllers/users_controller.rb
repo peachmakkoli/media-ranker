@@ -29,16 +29,6 @@ class UsersController < ApplicationController
     return
   end
 
-  def current # TODO: This probably needs to be in the Votes controller
-    @current_user = User.find_by(id: session[:user_id])
-
-    unless @current_user
-      flash[:error] = "A problem occurred: You must log in to do that"
-      redirect_to root_path
-      return
-    end
-  end
-
   def logout
     session[:user_id] = nil
     flash[:success] = "Successfully logged out"

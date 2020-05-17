@@ -17,10 +17,6 @@ describe UsersController do
   
   end
 
-  describe "current" do
-
-  end
-
   describe "logout" do
 
   end
