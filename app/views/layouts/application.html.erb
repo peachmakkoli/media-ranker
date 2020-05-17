@@ -59,8 +59,9 @@
             <% if @work %>
               <%= render partial: "./shared/error_messages", collection: @work.errors, as: :error %>
             <% end %>
-            <% if session[:vote_errors] %>
+            <% if session[:vote_errors] %> <%# vote errors are stored in a session variable because the votes#create action redirects, which clears the errors before they can be displayed %>
               <%= render partial: "./shared/error_messages", collection: session[:vote_errors], as: :error %>
+              <% session[:vote_errors] = nil %> 
             <% end %>
             <% if @user %>
               <%= render partial: "./shared/error_messages", collection: @user.errors, as: :error %>
