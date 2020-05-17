@@ -6,13 +6,14 @@ class VotesController < ApplicationController
       work_id: @work.id, 
       user_id: @current_user.id
     )
-    
+
     if @vote.save
       flash[:success] = "Successfully upvoted!"
       redirect_to request.referrer
       return
     else
       flash[:error] = "A problem occurred: Could not upvote"
+      session[:vote_errors] = @vote.errors.map{ |column, message| "#{column.capitalize} #{message}" }
       redirect_to request.referrer
       return
     end

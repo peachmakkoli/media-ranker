@@ -53,16 +53,21 @@
     <section class="flash-msg">
       <% flash.each do |name, message| %>
         <div class="alert <%= flash[:success] ? "alert-success" : "alert-warning" %>">
-          <span><%= message %></span>
-          <% if @work %>
+            <span><%= message %></span>
+          
           <ul>
-            <% @work.errors.each do |column, message| %>
-              <li><%= column.capitalize %></strong> <%= message %></li>
+            <% if @work %>
+              <%= render partial: "./shared/error_messages", collection: @work.errors, as: :error %>
+            <% end %>
+            <% if session[:vote_errors] %>
+              <%= render partial: "./shared/error_messages", collection: session[:vote_errors], as: :error %>
+            <% end %>
+            <% if @user %>
+              <%= render partial: "./shared/error_messages", collection: @user.errors, as: :error %>
             <% end %>
           </ul>
-        <% end %>
         </div>
-        <% end %>
+      <% end %>
     </section>
 
     <main>
