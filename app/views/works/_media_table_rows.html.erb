@@ -1,0 +1,7 @@
+<tr>
+  <td><%= work.votes.count %></td>
+  <td><%= link_to work.title, work_path(work) %></td>
+  <td><%= work.creator %></td>
+  <td><%= work.publication_year %></td>
+  <td><%= button_to "Upvote", work_upvote_path(work) %></td>
+</tr>
