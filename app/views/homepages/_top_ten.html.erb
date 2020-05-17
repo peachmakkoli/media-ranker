@@ -1,0 +1,6 @@
+<section class="top-ten__list-container">
+    <h2 class="top-ten__header"><%= header %></h2>
+      <ul class="list-group top-ten__list">
+        <%= render partial: "top_ten_work", collection: works, as: :work %>
+      </ul>
+</section>
