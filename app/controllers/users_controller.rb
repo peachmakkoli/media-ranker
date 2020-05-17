@@ -29,7 +29,7 @@ class UsersController < ApplicationController
     return
   end
 
-  def current
+  def current # TODO: This probably needs to be in the Votes controller
     @current_user = User.find_by(id: session[:user_id])
 
     unless @current_user
