@@ -8,20 +8,23 @@ class Work < ApplicationRecord
   def self.sort_works(category)
     raise ArgumentError.new("Error: Wrong argument passed in to Work.sort_works method") if !["album", "book", "movie"].include?(category)
 
-    return Work.where(category: category).sort_by { |work| work.votes.count }.reverse!
+    return Work.where(category: category).sort_by{ |work| work.votes.count }.reverse!
   end 
 
   def self.top_ten(category)
     raise ArgumentError.new("Error: Wrong argument passed in to Work.top_ten method") if !["album", "book", "movie"].include?(category)
 
-    return Work.where(category: category).limit(10).sort_by { |work| work.votes.count }.reverse!
+    return Work.where(category: category).limit(10).sort_by{ |work| work.votes.count }.reverse!
   end
 
   def self.spotlight
-    if Vote.all.empty? || Work.all.empty?
+    highest = Work.all.map{ |work| work.votes.count }.max
+    spotlight = Work.joins(:votes).group('works.id').having('count(work_id) = ?', highest) # retrieves a list of works that have a votes.count equal to highest, and because this query joins the votes table, the list is ordered by the work with the most recent vote (modified from Dorian and Arta's answer: https://stackoverflow.com/a/27772341)
+    
+    if Work.none? || Vote.none?
       return nil
     else
-      return Work.all.max_by { |work| work.votes.count }
+      return spotlight.first
     end
   end
 end
