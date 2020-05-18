@@ -47,5 +47,40 @@ describe Vote do
       @vote.work_id = @work.id
       expect(@vote.work).must_equal @work
     end
-  end  
+  end 
+  
+  describe "validations" do
+    before do
+      @user2 = users(:user2)
+
+      @new_vote = Vote.new(
+        user_id: @user2.id,
+        work_id: @work.id
+      )
+    end
+
+    it "must have a user_id" do
+      @new_vote.user_id = nil
+
+      expect(@new_vote.valid?).must_equal false
+      expect(@new_vote.errors.messages).must_include :user_id
+      expect(@new_vote.errors.messages[:user_id]).must_equal ["can't be blank"]
+    end
+
+    it "must have a work_id" do
+      @new_vote.work_id = nil
+
+      expect(@new_vote.valid?).must_equal false
+      expect(@new_vote.errors.messages).must_include :work_id
+      expect(@new_vote.errors.messages[:work_id]).must_equal ["can't be blank"]
+    end
+
+    it "will only allow the user to vote for a work once" do
+      @new_vote.user_id = @user.id # see before block on lines 4-12
+
+      expect(@new_vote.valid?).must_equal false
+      expect(@new_vote.errors.messages).must_include :user
+      expect(@new_vote.errors.messages[:user]).must_equal ["has already voted for this work"]
+    end
+  end
 end
