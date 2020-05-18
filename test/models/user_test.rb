@@ -31,4 +31,27 @@ describe User do
     end
   end
 
+  describe "validations" do
+    let (:new_user) {
+      User.new(
+        username: "new user"
+      )
+    }
+
+    it "must have a username" do
+      new_user.username = nil
+
+      expect(new_user.valid?).must_equal false
+      expect(new_user.errors.messages).must_include :username
+      expect(new_user.errors.messages[:username]).must_equal ["can't be blank"]
+    end
+
+    it "will only allow usernames that are unique" do
+      new_user.username = @user1.username
+
+      expect(new_user.valid?).must_equal false
+      expect(new_user.errors.messages).must_include :username
+      expect(new_user.errors.messages[:username]).must_equal ["has already been taken"]
+    end
+  end
 end
