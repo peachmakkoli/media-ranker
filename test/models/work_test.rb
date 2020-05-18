@@ -195,5 +195,19 @@ describe Work do
 
       expect(Work.spotlight).must_be_nil
     end
+
+    it "returns nil if there are no works in the database" do
+      Vote.destroy_all
+      Work.destroy_all
+
+      expect(Work.spotlight).must_be_nil
+    end
+
+    it "handles ties by returning the work that was last voted on" do
+      # adds a vote to the third album, ties with second album
+      vote_7 = Vote.create!(work_id: @album3.id, user_id: @user3.id)
+
+      expect(Work.spotlight).must_equal @album3
+    end
   end
 end
