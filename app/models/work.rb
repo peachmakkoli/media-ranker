@@ -1,8 +1,8 @@
 class Work < ApplicationRecord
-  has_many :votes
+  has_many :votes, dependent: :destroy
   validates :category, :title, presence: true
+  validates :category, inclusion: { in: ["album", "book", "movie"] }
   validates :title, uniqueness: { scope: :category, case_sensitive: false }
-  # TODO: add category validations, it can only be album, book, or movie
 
   # I chose to design a sort_works (by vote) method instead of creating a "votes" column in the works table, because there was a possibility that values in the votes column would not match up the actual number of vote records in the database
   def self.sort_works(category)

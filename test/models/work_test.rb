@@ -46,7 +46,7 @@ describe Work do
 
       expect(new_album.valid?).must_equal false
       expect(new_album.errors.messages).must_include :category
-      expect(new_album.errors.messages[:category]).must_equal ["can't be blank"]
+      expect(new_album.errors.messages[:category]).must_equal ["can't be blank", "is not included in the list"]
     end
 
     it "must have a title" do
@@ -55,6 +55,14 @@ describe Work do
       expect(new_album.valid?).must_equal false
       expect(new_album.errors.messages).must_include :title
       expect(new_album.errors.messages[:title]).must_equal ["can't be blank"]
+    end
+
+    it "only allows album, book, or movie for category" do
+      new_album.category = "video game"
+
+      expect(new_album.valid?).must_equal false
+      expect(new_album.errors.messages).must_include :category
+      expect(new_album.errors.messages[:category]).must_equal ["is not included in the list"]
     end
 
     it "will only allow titles that are unique (case insensitive)" do
