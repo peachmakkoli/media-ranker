@@ -54,13 +54,7 @@ class WorksController < ApplicationController
 
   def destroy
     @work = Work.find_by(id: params[:id])
-
-    if !@work
-      head :not_found
-      return
-    elsif @work.votes
-      @work.votes.destroy_all
-    end
+    return head :not_found if !@work
 
     @work.destroy
     flash[:success] = "Successfully deleted #{@work.category} #{@work.id}: \"#{@work.title}\""
