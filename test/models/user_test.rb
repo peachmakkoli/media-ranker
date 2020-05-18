@@ -1,7 +1,21 @@
 require "test_helper"
 
 describe User do
-  # it "does a thing" do
-  #   value(1+1).must_equal 2
-  # end
+  before do
+    @album = works(:album)
+    @album2 = works(:album2)
+    @album3 = works(:album3)
+    @user1 = users(:user1)
+    @user2 = users(:user2)
+    @user3 = users(:user3)
+  end
+  
+  it "can be instantiated" do
+    expect(@user1.valid?).must_equal true
+  end
+
+  it "will have the required fields" do
+    expect(@user1).must_respond_to :username
+  end
+
 end
