@@ -54,4 +54,18 @@ describe User do
       expect(new_user.errors.messages[:username]).must_equal ["has already been taken"]
     end
   end
+
+  describe "upvoted works" do
+    it "will return all works that have been upvoted by the user" do
+      vote_1 = Vote.create!(work_id: @album.id, user_id: @user1.id)
+      vote_2 = Vote.create!(work_id: @album2.id, user_id: @user1.id)
+
+      expect(@user1.upvoted_works).must_include @album
+      expect(@user1.upvoted_works).must_include @album2
+    end
+
+    it "will return an empty array if the user has no votes" do
+      expect(@user1.upvoted_works).must_be_empty
+    end
+  end
 end
