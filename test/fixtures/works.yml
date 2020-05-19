@@ -2,65 +2,65 @@ album:
   category: album
   title: first album title
   creator: first album artist
-  publication_year: first album year
+  publication_year: 2020
   description: first album description
 album2:
   category: album
   title: second album title
   creator: second album artist
-  publication_year: second album year
+  publication_year: 2020
   description: second album description
 album3:
   category: album
   title: third album title
   creator: third album artist
-  publication_year: third album year
+  publication_year: 2020
   description: third album description
 album4:
   category: album
   title: fourth album title
   creator: fourth album artist
-  publication_year: fourth album year
+  publication_year: 2020
   description: fourth album description
 album5:
   category: album
   title: fifth album title
   creator: fifth album artist
-  publication_year: fifth album year
+  publication_year: 2020
   description: fifth album description
 album6:
   category: album
   title: sixth album title
   creator: sixth album artist
-  publication_year: sixth album year
+  publication_year: 2020
   description: sixth album description
 album7:
   category: album
   title: seventh album title
   creator: seventh album artist
-  publication_year: seventh album year
+  publication_year: 2020
   description: seventh album description
 album8:
   category: album
   title: eighth album title
   creator: eighth album artist
-  publication_year: eighth album year
+  publication_year: 2020
   description: eighth album description
 album9:
   category: album
   title: ninth album title
   creator: ninth album artist
-  publication_year: ninth album year
+  publication_year: 2020
   description: ninth album description
 album10:
   category: album
   title: tenth album title
   creator: tenth album artist
-  publication_year: tenth album year
+  publication_year: 2020
   description: tenth album description
 album11:
   category: album
   title: eleventh album title
   creator: eleventh album artist
-  publication_year: eleventh album year
+  publication_year: 2020
   description: eleventh album description
