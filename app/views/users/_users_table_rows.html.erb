@@ -1,0 +1,5 @@
+<tr>
+  <td><%= link_to user.username, user_path(user) %></td>
+  <td><%= user.votes.count %></td>
+  <td><%= user.created_at.strftime("%B %e, %Y") %></td>
+</tr>

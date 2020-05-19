@@ -68,4 +68,24 @@ describe User do
       expect(@user1.upvoted_works).must_be_empty
     end
   end
+
+  describe "voted on" do
+    before do
+      @vote_1 = Vote.create!(work_id: @album.id, user_id: @user1.id)
+    end
+
+    it "returns the creation date of a vote for a specific work" do
+      work = @vote_1.work
+
+      expect(@user1.voted_on(work)).must_equal @vote_1.created_at
+    end
+
+    it "throws an exception if the work is invalid" do
+      work = nil
+
+      expect {
+        @user1.voted_on(work)
+      }.must_raise ArgumentError
+    end
+  end
 end
