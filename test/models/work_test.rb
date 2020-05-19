@@ -91,9 +91,8 @@ describe Work do
     it "will allow the publication year to be omitted" do
       new_album.publication_year = nil
 
-      expect(new_album.valid?).must_equal false
-      expect(new_album.errors.messages).must_include :publication_year
-      expect(new_album.errors.messages[:publication_year]).must_equal ["is not a number"]
+      expect(new_album.valid?).must_equal true
+      expect(new_album.errors.messages).must_be_empty
     end
   end
 
@@ -173,17 +172,16 @@ describe Work do
     end
 
     it "throws an exception if the category is invalid" do
-      category = "invalid"
+      invalid_category = "invalid"
 
       expect {
-        Work.top_ten(category)
+        Work.top_ten(invalid_category)
       }.must_raise ArgumentError
     end
   end
 
   describe "spotlight" do
     before do
-      @category = "album"
       # 1 vote for the first album
       vote_1 = Vote.create!(work_id: @album.id, user_id: @user1.id)
       # 3 votes for the second album
