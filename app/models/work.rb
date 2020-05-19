@@ -3,6 +3,7 @@ class Work < ApplicationRecord
   validates :category, :title, presence: true
   validates :category, inclusion: { in: ["album", "book", "movie"] }
   validates :title, uniqueness: { scope: :category, case_sensitive: false }
+  validates :publication_year, numericality: true, allow_nil: true
 
   # all custom methods in the work model take advantage of counter_cache, inspired by cristian's solution: https://stackoverflow.com/a/24151460
   def self.sort_works(category)

@@ -74,10 +74,26 @@ describe Work do
     end
 
     it "will allow a title already in the database under a different category" do
-      new_work = Work.new(category: "movie", title: @album.title)
+      new_work = Work.create!(category: "movie", title: new_album.title)
       
       expect(new_album.valid?).must_equal true
       expect(new_album.errors.messages).must_be_empty
+    end
+
+    it "will only allow a number if publication year is supplied" do
+      new_album.publication_year = "$$ldaksfdlaksf1233"
+
+      expect(new_album.valid?).must_equal false
+      expect(new_album.errors.messages).must_include :publication_year
+      expect(new_album.errors.messages[:publication_year]).must_equal ["is not a number"]
+    end
+
+    it "will allow the publication year to be omitted" do
+      new_album.publication_year = nil
+
+      expect(new_album.valid?).must_equal false
+      expect(new_album.errors.messages).must_include :publication_year
+      expect(new_album.errors.messages[:publication_year]).must_equal ["is not a number"]
     end
   end
 
