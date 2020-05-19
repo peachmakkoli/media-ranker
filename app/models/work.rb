@@ -19,12 +19,12 @@ class Work < ApplicationRecord
 
   def self.spotlight
     highest = Work.all.map{ |work| work.votes.count }.max
-    spotlight = Work.joins(:votes).group('works.id').having('count(work_id) = ?', highest) # retrieves a list of works that have a votes.count equal to highest, and because this query joins the votes table, the list is ordered by the work with the most recent vote (modified from Dorian and Arta's answer: https://stackoverflow.com/a/27772341)
-    
+    spotlight = Work.joins(:votes).group("works.id").having("count(work_id) = ?", highest).order("max(votes.created_at) DESC") # retrieves a list of works that have the highest number of votes, ordered by most recent vote (modified from Dorian and Arta's answer: https://stackoverflow.com/a/27772341)
+
     if Work.none? || Vote.none?
       return nil
     else
-      return spotlight.first
+      return spotlight.first # if there is a tie, the work that was voted on most recently will be selected
     end
   end
 end
