@@ -81,7 +81,7 @@ describe User do
     end
 
     it "throws an exception if the work is invalid" do
-      work = Work.find_by(-1)
+      work = nil
 
       expect {
         @user1.voted_on(work)
