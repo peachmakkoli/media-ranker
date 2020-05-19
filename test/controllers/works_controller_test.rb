@@ -47,7 +47,7 @@ describe WorksController do
           category: "album",
           title: "new album title",
           creator: "new album artist",
-          publication_year: "new album year",
+          publication_year: 2020,
           description: "new album description"
         },
       }
@@ -107,7 +107,7 @@ describe WorksController do
           category: "album",
           title: "edited album title",
           creator: "edited album artist",
-          publication_year: "edited album year",
+          publication_year: 2019,
           description: "edited album description"          
         },
       }
