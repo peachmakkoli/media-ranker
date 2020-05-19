@@ -47,6 +47,10 @@ describe Vote do
       @vote.work_id = @work.id
       expect(@vote.work).must_equal @work
     end
+
+    it "can update work #votes_count upon creation" do
+      expect(@vote.work.votes_count).must_equal 1
+    end
   end 
   
   describe "validations" do
