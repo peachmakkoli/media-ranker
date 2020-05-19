@@ -206,8 +206,12 @@ describe Work do
     it "handles ties by returning the work that was last voted on" do
       # adds a vote to the third album, ties with second album
       vote_7 = Vote.create!(work_id: @album3.id, user_id: @user3.id)
-
       expect(Work.spotlight).must_equal @album3
+      
+      # adds a vote to the first album, ties with second and third album
+      vote_8 = Vote.create!(work_id: @album.id, user_id: @user2.id)
+      vote_9 = Vote.create!(work_id: @album.id, user_id: @user3.id)
+      expect(Work.spotlight).must_equal @album
     end
   end
 end
