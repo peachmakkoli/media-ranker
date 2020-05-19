@@ -3,6 +3,6 @@ class User < ApplicationRecord
   validates :username, presence: true, uniqueness: true
 
   def upvoted_works
-    return self.votes.map{ |vote| Work.find_by(id: vote.work_id) }
+    return Work.joins(:votes).where(votes: { user_id: self.id })
   end
 end
