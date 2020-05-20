@@ -8,6 +8,9 @@ describe Work do
     @user1 = users(:user1)
     @user2 = users(:user2)
     @user3 = users(:user3)
+    Work.reset_counters(@album.id, :votes)
+    Work.reset_counters(@album2.id, :votes)
+    Work.reset_counters(@album3.id, :votes)
   end
   
   it "can be instantiated" do

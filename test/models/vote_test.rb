@@ -5,6 +5,7 @@ describe Vote do
     @work = works(:album)
     @user = users(:user1)
     @vote = votes(:vote1)
+    Work.reset_counters(@work.id, :votes)
   end
   
   it "can be instantiated" do
