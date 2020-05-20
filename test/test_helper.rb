@@ -28,7 +28,9 @@ class ActiveSupport::TestCase
     }
     post login_path, params: login_data
 
-    # Verify the user ID was saved - if that didn't work, this test is invalid
+    user = User.find_by(username: login_data[:user][:username])
+    return if !user
+
     expect(session[:user_id]).must_equal user.id
 
     return user

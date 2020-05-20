@@ -43,7 +43,39 @@ describe UsersController do
   end
   
   describe "login" do
-  
+    it "can log in as an existing user successfully, create flash message, and redirect" do
+      perform_login(@user)
+
+      expect(flash[:success]).must_include "Successfully logged in as existing user #{@user.username}"
+
+      must_redirect_to root_path
+    end
+
+    it "can log in as a new user successfully, create flash message, and redirect" do
+      new_user = User.new(username: "new_user")
+      
+      expect {
+        perform_login(new_user)
+      }.must_differ "User.count", 1
+
+      new_user = User.find_by(username: "new_user")
+
+      expect(flash[:success]).must_include "Successfully created new user #{new_user.username} with ID #{new_user.id}"
+      
+      must_redirect_to root_path
+    end
+
+    it "does not log in if the form data violates user validations, creates a flash message, and responds with a 400 error" do
+      invalid_user = User.new(username: nil)
+
+      expect {
+        perform_login(invalid_user)
+      }.wont_differ "User.count"
+
+      expect(flash[:error]).must_include "A problem occurred: Could not log in"
+
+      must_respond_with :bad_request
+    end
   end
 
   describe "logout" do
