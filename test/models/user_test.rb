@@ -20,10 +20,6 @@ describe User do
 
   describe "relationships" do
     it "can have many votes" do
-      vote_1 = Vote.create!(work_id: @album.id, user_id: @user1.id)
-      vote_2 = Vote.create!(work_id: @album2.id, user_id: @user1.id)
-      vote_3 = Vote.create!(work_id: @album3.id, user_id: @user1.id)
-      
       expect(@user1.votes.count).must_equal 3
       @user1.votes.each do |vote|
         expect(vote).must_be_instance_of Vote
@@ -57,27 +53,23 @@ describe User do
 
   describe "upvoted works" do
     it "will return all works that have been upvoted by the user" do
-      vote_1 = Vote.create!(work_id: @album.id, user_id: @user1.id)
-      vote_2 = Vote.create!(work_id: @album2.id, user_id: @user1.id)
-
       expect(@user1.upvoted_works).must_include @album
       expect(@user1.upvoted_works).must_include @album2
     end
 
     it "will return an empty array if the user has no votes" do
+      Vote.destroy_all
       expect(@user1.upvoted_works).must_be_empty
     end
   end
 
   describe "voted on" do
     before do
-      @vote_1 = Vote.create!(work_id: @album.id, user_id: @user1.id)
+      @vote_1 = votes(:vote1)
     end
 
     it "returns the creation date of a vote for a specific work" do
-      work = @vote_1.work
-
-      expect(@user1.voted_on(work)).must_equal @vote_1.created_at
+      expect(@user1.voted_on(@album)).must_equal @vote_1.created_at
     end
 
     it "throws an exception if the work is invalid" do

@@ -1,3 +1,9 @@
 vote1:
   work: album
   user: user1
+vote2:
+  work: album2
+  user: user1
+vote3: 
+  work: album3
+  user: user1
