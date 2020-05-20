@@ -1,3 +1,89 @@
 // Place all the styles related to the Homepages controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+
+/* HOMEPAGES STYLES */
+
+a, h2, h3 {
+  color: #26A69A;
+}
+
+a:hover {
+  color: #00796B;
+  text-decoration: none;
+}
+
+.root__hr {
+  margin: 0px auto 3rem auto;
+  color: #EEEEEE;
+}
+
+/* SPOTLIGHT STYLES */
+
+.spotlight {
+  padding: 0 2rem 2rem 2rem;
+}
+
+.spotlight__header {
+  color: #26A69A;
+}
+
+.spotlight__header--prefix {
+  color: #424242;
+}
+
+  .spotlight__header--prefix::after {
+    content: ":";
+  }
+
+.spotlight__link-to {
+  border-bottom: 2px solid;
+}
+
+.spotlight__description {
+  margin-bottom: 0;
+}
+
+/* TOP TEN STYLES */
+
+.top-ten__container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-column-gap: 2em;
+}
+
+.top-ten__header {
+  color: #26A69A;
+  border-bottom: 2px solid;
+  border-bottom-color: #B2DFDB;
+}
+
+.top-ten__list {
+  list-style-type: none;
+  margin-left: 0;
+  padding-left: 0;
+}
+
+.list-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 0;
+}
+
+.list-group-item:first-child {
+  border-top-left-radius: 0.25rem;
+  border-top-right-radius: 0.25rem;
+}
+
+.list-group-item {
+  display: block;
+  border: none;
+  position: relative;
+  padding: 0.75rem 1.25rem;
+  margin-bottom: -1px;
+  background-color: #fff;
+}
+
+.top-ten__creator {
+  color: slategrey;
+}
