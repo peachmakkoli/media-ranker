@@ -79,6 +79,17 @@ describe UsersController do
   end
 
   describe "logout" do
+    it "can successfully log the user out, create a flash message, and redirect" do
+      perform_login(@user)
 
+      expect {
+        post logout_path
+      }.wont_differ "User.count"
+
+      expect(flash[:success]).must_include "Successfully logged out"
+      expect(session[:user_id]).must_be_nil
+
+      must_redirect_to root_path
+    end
   end
 end
