@@ -72,10 +72,19 @@ h4 {
   font-size: 1.5rem;
 }
 
-small, .small {
-  font-size: 80%;
-  font-weight: 400;
+a, h2, h3 {
+  color: #26A69A;
 }
+
+a {
+  text-decoration: none;
+  background-color: transparent;
+}
+
+  a:hover {
+    color: #00796B;
+    text-decoration: none;
+  }
 
 p {
   display: block;
@@ -89,15 +98,10 @@ p {
   font-weight: 400;
 }
 
-a {
-  text-decoration: none;
-  background-color: transparent;
+small, .small {
+  font-size: 80%;
+  font-weight: 400;
 }
-
-  a:hover {
-    color: #00796B;
-    text-decoration: none;
-  }
 
 ol, ul, dl {
   margin-top: 0;

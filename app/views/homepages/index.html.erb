@@ -1,9 +1,7 @@
 <section class="spotlight">
   <% if @spotlight %>
     <h2 class="spotlight__header">
-      <span class="spotlight__header--prefix">
-        Media Spotlight
-      </span>
+      <span class="spotlight__header--prefix">Media Spotlight</span>
       <%= link_to @spotlight.title, work_path(@spotlight), class: "spotlight__link-to" %> by <%= @spotlight.creator %>
     </h2>
     <p class="spotlight__description"><%= pluralize(@spotlight.votes.count, "vote") %> - <%= @spotlight.description %></p>
