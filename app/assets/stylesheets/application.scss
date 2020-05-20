@@ -17,7 +17,7 @@
 
 @import "**/*";
 
-/* GENERAL STYLES */
+/* GENERAL */
 
 *, *::before, *::after {
   box-sizing: border-box;
@@ -64,6 +64,10 @@ h2 {
   font-size: 2rem;
 }
 
+h3 {
+  font-size: 1.75rem;
+}
+
 h4 {
   font-size: 1.5rem;
 }
@@ -91,6 +95,7 @@ a {
 }
 
   a:hover {
+    color: #00796B;
     text-decoration: none;
   }
 
@@ -114,7 +119,7 @@ li {
   text-align: -webkit-match-parent;
 }
 
-/* APP HEADER STYLES */
+/* APP HEADER */
 
 .app-header__header {
   max-width: 100%;
@@ -139,7 +144,7 @@ li {
   color: white;
 }
 
-/* APP HEADER NAV STYLES */
+/* APP HEADER NAV */
 
 .nav {
   display: flex;
@@ -196,10 +201,21 @@ li {
   transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
 
+  .btn:hover {
+    background-color: #00796B;
+    color: white;
+  }
+
 .btn-primary {
   background-color: #26A69A;
   color: white;
   border-color: #26A69A;
+}
+
+.btn-secondary {
+  color: #fff;
+  background-color: #6c757d;
+  border-color: #6c757d;
 }
 
 /* FLASH MESSAGES */

@@ -2,15 +2,10 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
 
-/* HOMEPAGES STYLES */
+/* HOMEPAGES */
 
 a, h2, h3 {
   color: #26A69A;
-}
-
-a:hover {
-  color: #00796B;
-  text-decoration: none;
 }
 
 .root__hr {
@@ -18,7 +13,7 @@ a:hover {
   color: #EEEEEE;
 }
 
-/* SPOTLIGHT STYLES */
+/* SPOTLIGHT */
 
 .spotlight {
   padding: 0 2rem 2rem 2rem;
@@ -44,7 +39,7 @@ a:hover {
   margin-bottom: 0;
 }
 
-/* TOP TEN STYLES */
+/* TOP TEN */
 
 .top-ten__container {
   display: grid;
