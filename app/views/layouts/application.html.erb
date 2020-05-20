@@ -58,7 +58,9 @@
               <span><%= message %></span>
             <% else %>
               <ul>
-                <%= render partial: "./shared/error_messages", collection: message, as: :error %>
+                <% message.each do |error| %>
+                  <li><%= error %></li>
+                <% end %>
               </ul>
             <% end %>
           <% end %>
