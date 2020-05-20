@@ -5,5 +5,15 @@ vote2:
   work: album2
   user: user1
 vote3: 
+  work: album2
+  user: user2
+vote4:
+  work: album2
+  user: user3
+vote5: 
   work: album3
   user: user1
+vote6:
+  work: album3
+  user: user2
+  
