@@ -36,7 +36,10 @@ describe UsersController do
   end
 
   describe "login form" do
-
+    it "responds with success" do
+      get login_path
+      must_respond_with :success
+    end
   end
   
   describe "login" do
