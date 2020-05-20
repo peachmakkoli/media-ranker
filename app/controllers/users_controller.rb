@@ -31,6 +31,7 @@ class UsersController < ApplicationController
       return
     else
       flash.now[:error] = "A problem occurred: Could not log in"
+      flash.now[:user_errors] = @user.errors.map{ |column, message| "#{column.capitalize} #{message}" }
       render :login_form, status: :bad_request
       return
     end

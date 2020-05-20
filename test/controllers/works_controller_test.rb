@@ -83,6 +83,7 @@ describe WorksController do
       }.wont_differ "Work.count"
 
       expect(flash[:error]).must_include "A problem occurred: Could not create #{invalid_work_hash[:work][:category]}"
+      expect(flash[:work_errors].first).must_equal "Title can't be blank"
 
       must_respond_with :bad_request
     end
@@ -152,6 +153,7 @@ describe WorksController do
       }.wont_differ "Work.count"
       
       expect(flash[:error]).must_include "A problem occurred: Could not update #{@work.category}"
+      expect(flash[:work_errors].first).must_equal "Title can't be blank"
 
       must_respond_with :bad_request
     end

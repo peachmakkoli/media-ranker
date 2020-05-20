@@ -73,6 +73,7 @@ describe UsersController do
       }.wont_differ "User.count"
 
       expect(flash[:error]).must_include "A problem occurred: Could not log in"
+      expect(flash[:user_errors].first).must_equal "Username can't be blank"
 
       must_respond_with :bad_request
     end
