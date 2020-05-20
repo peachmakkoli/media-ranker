@@ -1,5 +1,5 @@
 <h2>User Summary: <%= link_to @user.username, user_path(@user) %></h2>
-<p>Joined site <%= @user.created_at.strftime("%B %e, %Y") %>
+<p>Joined site <%= readable_date(@user.created_at) %>
 
 <section class="user-votes__container">
   <table class="table">
