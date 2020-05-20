@@ -13,11 +13,13 @@ class VotesController < ApplicationController
       return
     else
       flash[:error] = "A problem occurred: Could not upvote"
-      session[:vote_errors] = @vote.errors.map{ |column, message| "#{column.capitalize} #{message}" }
+      flash[:vote_errors] = @vote.errors.map{ |column, message| "#{column.capitalize} #{message}" }
       redirect_to request.referrer
       return
     end
   end
+
+  private 
 
   # helper method for checking if the work exists
   def validate_work
@@ -43,8 +45,6 @@ class VotesController < ApplicationController
       return true
     end
   end
-
-  private
 
   def vote_params
     return params.require(:vote).permit(:work_id, :user_id)

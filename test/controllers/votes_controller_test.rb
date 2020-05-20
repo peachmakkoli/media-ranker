@@ -37,13 +37,27 @@ describe VotesController do
 
       must_redirect_to request.referrer
     end
-  end
 
-  describe "validate work" do
-    
-  end
+    it "ensures a guest user cannot vote if they have not logged in, creates a flash message, and redirects" do
+      work_id = @work.id
 
-  describe "validate user" do
+      expect {
+        post work_upvote_path(work_id), params: {}, headers: { 'HTTP_REFERER' => 'http://example.com' }
+      }.wont_differ "Vote.count"
 
+      expect(flash[:error]).must_equal "A problem occurred: You must log in to do that"
+
+      must_redirect_to request.referrer
+    end
+
+    it "returns a 404 if the work being upvoted is not found" do
+      work_id = -1
+
+      expect {
+        post work_upvote_path(work_id)
+      }.wont_differ "Vote.count"
+
+      must_respond_with :not_found
+    end
   end
 end
