@@ -10,39 +10,39 @@
   </head>
 
   <body>
-    <header class="site-header">
+    <header class="app-header__header">
       <h1>
       <%= link_to "LGBTQ Media Ranker", root_path %>
       <small>Ranking the Best of Everything</small>
       </h1>
 
-      <nav class="d-flex justify-content-between site-nav">
-        <ul class="nav media-nav">
-          <li class="nav-item">
+      <nav class="app-header__nav">
+        <ul class="nav nav app-header__site-nav-container">
+          <li class="nav-item app-header__nav_item">
             <%= link_to "View top media", root_path, class: "nav-link" %>
           </li>
-          <li class="nav-item">
+          <li class="nav-item app-header__nav_item">
             <%= link_to "View all media", works_path, class: "nav-link" %>
           </li>
-          <li class="nav-item">
+          <li class="nav-item app-header__nav_item">
             <%= link_to "Add a work", new_work_path, class: "nav-link" %>
           </li>
-          <li class="nav-item">
+          <li class="nav-item app-header__nav_item">
             <%= link_to "View all users", users_path, class: "nav-link" %>
           </li>
         </ul>
 
-        <ul class="nav user-nav">
+        <ul class="nav app-header__user-nav-container">
         <% if session[:user_id] %>
           <% user = User.find(session[:user_id]) %>
-          <li class="nav-item">
+          <li class="nav-item app-header__nav_item">
             <%= link_to "Logged in as #{user.username}", user_path(user), class: "btn btn-primary" %>
           </li>
-          <li class="nav-item">
+          <li class="nav-item app-header__nav_item">
             <%= link_to "Log out", logout_path, method: :post, class: "btn btn-primary" %>
           </li>
         <% else %>
-          <li class="nav-item">
+          <li class="nav-item app-header__nav_item">
             <%= link_to "Log in", login_path, class: "btn btn-primary" %>
           </li>
         <% end %>
@@ -51,7 +51,7 @@
     </header>
 
     <% if flash[:success] || flash[:error] %>
-      <section class="flash-msg">
+      <section class="alert__container">
         <div class="alert <%= flash[:success] ? "alert-success" : "alert-warning" %>">
           <% flash.each do |name, message| %>
             <% if name == "error" || name == "success" %>
