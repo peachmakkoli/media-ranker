@@ -22,12 +22,8 @@ describe Work do
 
   describe "relationships" do
     it "can have many votes" do
-      vote_1 = Vote.create!(work_id: @album.id, user_id: @user1.id)
-      vote_2 = Vote.create!(work_id: @album.id, user_id: @user2.id)
-      vote_3 = Vote.create!(work_id: @album.id, user_id: @user3.id)
-      
-      expect(@album.votes.count).must_equal 3
-      @album.votes.each do |vote|
+      expect(@album2.votes.count).must_equal 3
+      @album2.votes.each do |vote|
         expect(vote).must_be_instance_of Vote
       end
     end
@@ -74,7 +70,7 @@ describe Work do
     end
 
     it "will allow a title already in the database under a different category" do
-      new_work = Work.create!(category: "movie", title: new_album.title)
+      Work.create!(category: "movie", title: new_album.title)
       
       expect(new_album.valid?).must_equal true
       expect(new_album.errors.messages).must_be_empty
@@ -99,18 +95,9 @@ describe Work do
   describe "sort works" do
     before do
       @category = "album"
-      # 1 vote for the first album
-      vote_1 = Vote.create!(work_id: @album.id, user_id: @user1.id)
-      # 3 votes for the second album
-      vote_2 = Vote.create!(work_id: @album2.id, user_id: @user1.id)
-      vote_3 = Vote.create!(work_id: @album2.id, user_id: @user2.id)
-      vote_4 = Vote.create!(work_id: @album2.id, user_id: @user3.id)
-      # 2 votes for the third album
-      vote_5 = Vote.create!(work_id: @album3.id, user_id: @user1.id)
-      vote_6 = Vote.create!(work_id: @album3.id, user_id: @user2.id)
     end
 
-    it "sorts by vote count if there are many works in the database" do      
+    it "sorts by vote count if there are many works in the database" do
       expect(Work.sort_works(@category).first).must_equal @album2
       expect(Work.sort_works(@category).second).must_equal @album3
       expect(Work.sort_works(@category).third).must_equal @album
@@ -135,15 +122,6 @@ describe Work do
   describe "top ten" do
     before do
       @category = "album"
-      # 1 vote for the first album
-      vote_1 = Vote.create!(work_id: @album.id, user_id: @user1.id)
-      # 3 votes for the second album
-      vote_2 = Vote.create!(work_id: @album2.id, user_id: @user1.id)
-      vote_3 = Vote.create!(work_id: @album2.id, user_id: @user2.id)
-      vote_4 = Vote.create!(work_id: @album2.id, user_id: @user3.id)
-      # 2 votes for the third album
-      vote_5 = Vote.create!(work_id: @album3.id, user_id: @user1.id)
-      vote_6 = Vote.create!(work_id: @album3.id, user_id: @user2.id)
     end
 
     it "sorts by vote count if there are many works in the database" do      
@@ -181,18 +159,6 @@ describe Work do
   end
 
   describe "spotlight" do
-    before do
-      # 1 vote for the first album
-      vote_1 = Vote.create!(work_id: @album.id, user_id: @user1.id)
-      # 3 votes for the second album
-      vote_2 = Vote.create!(work_id: @album2.id, user_id: @user1.id)
-      vote_3 = Vote.create!(work_id: @album2.id, user_id: @user2.id)
-      vote_4 = Vote.create!(work_id: @album2.id, user_id: @user3.id)
-      # 2 votes for the third album
-      vote_5 = Vote.create!(work_id: @album3.id, user_id: @user1.id)
-      vote_6 = Vote.create!(work_id: @album3.id, user_id: @user2.id)
-    end
-
     it "finds the work that has the highest number of votes" do
       expect(Work.spotlight).must_equal @album2
     end

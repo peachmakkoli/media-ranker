@@ -4,11 +4,7 @@ describe Vote do
   before do
     @work = works(:album)
     @user = users(:user1)
-
-    @vote = Vote.create!(
-      user_id: @user.id,
-      work_id: @work.id
-    )
+    @vote = votes(:vote1)
   end
   
   it "can be instantiated" do
@@ -80,7 +76,7 @@ describe Vote do
     end
 
     it "will only allow the user to vote for a work once" do
-      @new_vote.user_id = @user.id # see before block on lines 4-12
+      @new_vote.user_id = @user.id # see before block on lines 4-8
 
       expect(@new_vote.valid?).must_equal false
       expect(@new_vote.errors.messages).must_include :user
