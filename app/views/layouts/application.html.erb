@@ -50,26 +50,21 @@
       </nav>
     </header>
 
-    <section class="flash-msg">
-      <% flash.each do |name, message| %>
+    <% if flash[:success] || flash[:error] %>
+      <section class="flash-msg">
         <div class="alert <%= flash[:success] ? "alert-success" : "alert-warning" %>">
-            <span><%= message %></span>
-          
-          <ul>
-            <% if @work %>
-              <%= render partial: "./shared/error_messages", collection: @work.errors, as: :error %>
+          <% flash.each do |name, message| %>
+            <% if name == "error" || name == "success" %>
+              <span><%= message %></span>
+            <% else %>
+              <ul>
+                <%= render partial: "./shared/error_messages", collection: message, as: :error %>
+              </ul>
             <% end %>
-            <% if session[:vote_errors] %> <%# vote errors are stored in a session variable because the votes#create action redirects, which clears the errors before they can be displayed %>
-              <%= render partial: "./shared/error_messages", collection: session[:vote_errors], as: :error %>
-              <% session[:vote_errors] = nil %> 
-            <% end %>
-            <% if @user %>
-              <%= render partial: "./shared/error_messages", collection: @user.errors, as: :error %>
-            <% end %>
-          </ul>
+          <% end %>
         </div>
-      <% end %>
-    </section>
+      </section>
+    <% end %>
 
     <main>
       <%= yield %>
