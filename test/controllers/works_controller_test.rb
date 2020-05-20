@@ -1,6 +1,10 @@
 require "test_helper"
 
 describe WorksController do
+  before do
+    @work = works(:album)
+  end
+
   describe "index" do
     it "responds with success when there are many works saved" do
       expect(Work.count).must_equal 11
@@ -21,9 +25,7 @@ describe WorksController do
 
   describe "show" do
     it "responds with success when showing an existing valid work" do
-      work = works(:album)
-      
-      get work_path(work.id)
+      get work_path(@work.id)
       must_respond_with :success
     end
 
@@ -88,9 +90,7 @@ describe WorksController do
 
   describe "edit" do
     it "responds with success when getting the edit page for an existing, valid work" do
-      work = works(:album)
-
-      get edit_work_path(work.id)
+      get edit_work_path(@work.id)
       must_respond_with :success
     end
 
@@ -114,21 +114,19 @@ describe WorksController do
     }
 
     it "can update an existing work with valid information accurately, create a flash message, and redirect" do
-      work = works(:album)
-
       expect {
-        patch work_path(work.id), params: edited_work_hash
+        patch work_path(@work.id), params: edited_work_hash
       }.wont_differ "Work.count"
 
-      work.reload
-      expect(work.title).must_equal edited_work_hash[:work][:title]
-      expect(work.creator).must_equal edited_work_hash[:work][:creator]
-      expect(work.publication_year).must_equal edited_work_hash[:work][:publication_year]
-      expect(work.description).must_equal edited_work_hash[:work][:description]
+      @work.reload
+      expect(@work.title).must_equal edited_work_hash[:work][:title]
+      expect(@work.creator).must_equal edited_work_hash[:work][:creator]
+      expect(@work.publication_year).must_equal edited_work_hash[:work][:publication_year]
+      expect(@work.description).must_equal edited_work_hash[:work][:description]
 
-      expect(flash[:success]).must_include "Successfully updated #{work.category} #{work.id}"
+      expect(flash[:success]).must_include "Successfully updated #{@work.category} #{@work.id}"
 
-      must_redirect_to work_path(work.id)
+      must_redirect_to work_path(@work.id)
     end
 
     it "does not update any work if given an invalid id, and responds with a 404" do
@@ -142,8 +140,6 @@ describe WorksController do
     end
 
     it "does not update a work if the form data violates work validations, creates a flash message, and responds with a 400 error" do
-      work = works(:album)
-
       invalid_work_hash = {
         work: {
           category: "album",
@@ -152,10 +148,10 @@ describe WorksController do
       }
 
       expect {
-        patch work_path(work.id), params: invalid_work_hash
+        patch work_path(@work.id), params: invalid_work_hash
       }.wont_differ "Work.count"
       
-      expect(flash[:error]).must_include "A problem occurred: Could not update #{work.category}"
+      expect(flash[:error]).must_include "A problem occurred: Could not update #{@work.category}"
 
       must_respond_with :bad_request
     end
@@ -163,25 +159,18 @@ describe WorksController do
 
   describe "destroy" do
     it "destroys the work instance in db when work exists and has no votes, creates a flash message, then redirects" do
-      work = works(:album)
-      
       expect{
-        delete work_path(work.id)
+        delete work_path(@work.id)
       }.must_differ "Work.count", -1
 
-      expect(flash[:success]).must_include "Successfully deleted #{work.category} #{work.id}"
+      expect(flash[:success]).must_include "Successfully deleted #{@work.category} #{@work.id}"
 
       must_redirect_to root_path
     end
 
     it "destroys the work instance in db when work exists and has at least one vote, creates a flash message, then redirects" do
-      work = works(:album)
-
-      new_user = User.create!(username: "test")
-      vote_1 = Vote.create!(work_id: work.id, user_id: new_user.id)
-  
       expect {
-        delete work_path(work.id)
+        delete work_path(@work.id)
       }.must_differ "Work.count", -1
 
       must_redirect_to root_path
