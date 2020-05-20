@@ -24,7 +24,15 @@ describe UsersController do
   end
 
   describe "show" do
+    it "responds with success when showing an existing valid user" do
+      get user_path(@user.id)
+      must_respond_with :success
+    end
 
+    it "responds with 404 with an invalid user id" do
+      get user_path(-1)
+      must_respond_with :not_found
+    end
   end
 
   describe "login form" do
