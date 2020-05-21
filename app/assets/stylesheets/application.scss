@@ -17,7 +17,7 @@
 
 @import "**/*";
 
-@import url('https://fonts.googleapis.com/css2?family=Bungee+Shade&family=Montserrat:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bungee&family=Rajdhani:wght@300;400&display=swap');
 
 /* GENERAL */
 
@@ -26,13 +26,12 @@
 }
 
 body, h1, h2, h3, h4, h5 {
-  font-family: "Montserrat", sans-serif;
+  font-family: 'Rajdhani', sans-serif;
 }
 
 body {
   display: block;
   margin: 0;
-  font-family: "Montserrat", sans-serif;
   font-size: 1rem;
   font-weight: 400;
   line-height: 1.5;
@@ -75,7 +74,7 @@ h4 {
 }
 
 a, h2, h3 {
-  color: #26A69A;
+  color: #00a6fb;
 }
 
 a {
@@ -84,7 +83,7 @@ a {
 }
 
   a:hover {
-    color: #00796B;
+    color: #0582ca;
     text-decoration: none;
   }
 
@@ -100,7 +99,7 @@ p {
   font-weight: 400;
 }
 
-small, .small {
+small {
   font-size: 80%;
   font-weight: 400;
 }
@@ -129,7 +128,7 @@ li {
 
 .app-header__header {
   max-width: 100%;
-  background-color: #b1dfdb;
+  background-color: #353535;
   margin-bottom: 0.5rem;
   padding: 2rem 1rem 0.5rem 1rem;
 }
@@ -141,17 +140,21 @@ li {
 
 .app-header__header h1 a {
   background-image: url("steve-johnson-wpw8sHoBtSY-unsplash.jpg"); 
-  background-size: 500px;
+  background-clip: text;
   -webkit-background-clip: text;
+  background-size: 500px;
   color: transparent;
   padding-right: 25px;
   margin-right: 15px;
-  border-right: white 2px solid;
-  font-family: 'Bungee Shade', cursive;
+  border-right: white .25px solid;
+  font-family: 'Bungee', cursive;
+  -webkit-text-stroke: .10px white;
 }
 
 .app-header__header h1 small {
   color: white;
+  font-weight: 300;
+  font-style: italic;
 }
 
 /* APP HEADER NAV */
@@ -183,8 +186,12 @@ li {
 }
 
 .app-header__nav_item .nav-link {
-  color: #00796B;
+  color: white;
 }
+
+  .app-header__nav_item .nav-link:hover {
+    color: #00a6fb;
+  }
 
 .nav-link {
   display: block;
@@ -212,14 +219,14 @@ li {
 }
 
   .btn:hover {
-    background-color: #00796B;
+    background-color: #0582ca;
     color: white;
   }
 
 .btn-primary {
-  background-color: #26A69A;
+  background-color: #00a6fb;
   color: white;
-  border-color: #26A69A;
+  border-color: #00a6fb;
 }
 
 .btn-secondary {
