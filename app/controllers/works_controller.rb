@@ -1,5 +1,7 @@
 class WorksController < ApplicationController
-  before_action :find_work, only: [:show, :edit, :update, :destroy]
+  before_action only: [:show, :edit, :update, :destroy] do
+    find_work(params[:id])
+  end
 
   def index
     @albums = Work.sort_works("album")
@@ -53,12 +55,6 @@ class WorksController < ApplicationController
   end
 
   private
-
-  def find_work
-    @work = Work.find_by(id: params[:id])
-    head :not_found if !@work
-    return
-  end
 
   def work_params
     return params.require(:work).permit(:category, :title, :creator, :publication_year, :description)
