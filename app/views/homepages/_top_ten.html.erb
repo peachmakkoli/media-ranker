@@ -1,6 +1,14 @@
 <section class="top-ten__list-container">
-    <h2 class="top-ten__header"><%= header %></h2>
-      <ul class="list-group top-ten__list">
-        <%= render partial: "top_ten_work", collection: works, as: :work %>
-      </ul>
+  <h2 class="top-ten__header"><%= header %></h2>
+  <ul class="list-group top-ten__list">
+    <% works.collect do |work| %>
+      <li class="list-group-item">
+        <h4>
+          <%= link_to work.title, work_path(work) %>
+          <small class="top-ten__creator">by <%= work.creator %></small>
+          <p><%= pluralize(work.votes.count, "vote") %></p>
+        </h4>
+      </li>
+    <% end %>
+  </ul>
 </section>
