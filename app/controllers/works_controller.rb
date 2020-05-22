@@ -1,4 +1,6 @@
 class WorksController < ApplicationController
+  before_action :find_work, only: [:show, :edit, :update, :destroy]
+
   def index
     @albums = Work.sort_works("album")
     @books = Work.sort_works("book")
@@ -6,9 +8,6 @@ class WorksController < ApplicationController
   end
 
   def show
-    @work = Work.find_by(id: params[:id])
-    head :not_found if !@work
-    return
   end
 
   def new
@@ -31,18 +30,10 @@ class WorksController < ApplicationController
   end
 
   def edit
-    @work = Work.find_by(id: params[:id])
-    head :not_found if !@work
-    return
   end
 
   def update
-    @work = Work.find_by(id: params[:id])
-
-    if !@work
-      head :not_found
-      return
-    elsif @work.update(work_params)
+    if @work.update(work_params)
       flash[:success] = "Successfully updated #{@work.category} #{@work.id}: \"#{@work.title}\""
       redirect_to work_path(@work)
       return
@@ -55,9 +46,6 @@ class WorksController < ApplicationController
   end
 
   def destroy
-    @work = Work.find_by(id: params[:id])
-    return head :not_found if !@work
-
     @work.destroy
     flash[:success] = "Successfully deleted #{@work.category} #{@work.id}: \"#{@work.title}\""
     redirect_to root_path
@@ -65,6 +53,12 @@ class WorksController < ApplicationController
   end
 
   private
+
+  def find_work
+    @work = Work.find_by(id: params[:id])
+    head :not_found if !@work
+    return
+  end
 
   def work_params
     return params.require(:work).permit(:category, :title, :creator, :publication_year, :description)
